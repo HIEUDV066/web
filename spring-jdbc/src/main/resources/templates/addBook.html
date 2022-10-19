@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Book</title>
+</head>
+<body>
+	<div class="row">
+		<h1>Book</h1>
+	</div>
+	<form  th:action="@{/book/save}"
+		th:object="${book}"
+		th:method=" POST ">
+	bookcode: <input type="number" name="bookcode" th:value="${book.bookcode}"><br />
+	<p style="color: red" th:if="${error}" th:text="${error}"></p>
+	title: <input type="text" name="title" th:value="${book.title}"><br />
+	author: <input type="text" name="author" th:value="${book.author}"><br />
+	category: <input type="text" name="category" th:value="${book.category}"><br />
+	approved: <input type="checkbox" name="approved" th:checked="${book.approved}"><br />
+	<input type="submit" value="Save Book">
+	</form>
+</body>
+</html>

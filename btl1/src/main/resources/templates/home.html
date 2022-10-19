@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+    <h1 style="font-size: 20px;">Hello <span th:text="${username}"></span></h1>
+    <div>
+
+        <a class="btn btn-primary" th:href="@{/formAdd}" th:text="Add"></a>
+<!--        <a class="btn btn-primary" th:href="@{/formAdd}" th:text="Add"></a>-->
+<!--        <a class="btn btn-warning" th:href="@{/logout}" th:text="Logout"></a>-->
+    </div>
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Dob</th>
+                <th scope="col">Major</th>
+                <th scope="col">Vaccinated</th>
+                <th scope="col">Handle</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="student : ${students}">
+                <th scope="row" th:text="${student.id}"></th>
+                <th><p  th:text="${student.name}"></p></th>
+                <td th:text="${#dates.format(student.dob, 'dd-MM-yyyy')}"></td>
+                <td th:text="${student.major}"></td>
+                <td ><input type="checkbox" th:checked="${student.vaccinated}" disabled></td>
+                <td><a th:href="@{/delete(id=${student.id})}" th:text="Delete"></a>/<a th:href="@{/formUpdate(id=${student.id})}" th:text="Update"></a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+</body>
+</html>

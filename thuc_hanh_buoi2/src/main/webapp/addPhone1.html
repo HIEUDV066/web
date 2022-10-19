@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <title>Add Phone</title>
+    </head>
+    <body>
+        
+        <div class="container" style="margin-top: 50px;">
+            <div class="row" style="border: 1px darkgrey solid; border-radius: 10px;width: 50%; margin: 0 auto; padding: 20px;" >
+                <div class="col-sm-12">
+                <h3>Add Phone</h3>
+                <form th:action="@{/phone/newphone}" method="post" th:object="${phone}">
+                    <div class="form-group">
+                        <label>Id:</label>
+                        <input type="text" class="form-control"  placeholder="id" th:field="*{id}">
+                    </div>
+                    <p style="color: red" th:if="${error}" th:text="${error}"></p>
+                	<p style="color: red" th:if="${#fields.hasErrors('*{id}')}" th:errors="*{id}"></p>
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <input type="text" class="form-control"  placeholder="name" th:field="*{name}">            
+                    </div> 
+                    <p style="color: red" th:if="${#fields.hasErrors('*{name}')}" th:errors="*{name}"></p>                 
+                  
+                    
+                    <div class="form-group">
+                        <label>Price:</label>
+                        <input type="text" class="form-control"  placeholder="price"  th:field="*{price}">                      
+                    </div>
+                    
+                    <p style="color: red" th:if="${#fields.hasErrors('*{price}')}" th:errors="*{price}"></p>
+                    
+                    <div class="form-group">
+                        <label>Brand:</label>
+                        <input type="text" class="form-control"  placeholder="brand" th:field="*{brand}">                        
+                    </div>
+                    <p style="color: red" th:if="${#fields.hasErrors('*{brand}')}" th:errors="*{brand}"></p>
+     				<div class="form-group">
+                        <label>Sold:</label><br/>
+                        <select th:field="*{sold}">
+                        	<option th:value="1" th:text="SOLD"></option>
+                        	<option th:value="0" th:text="NOT SOLD"></option>
+                        </select>                     
+                    </div>
+                    
+<!--                     <p th:if="${#fields.hasErrors('vaccinated')}" th:errors="*{vaccinated}" th:class="${#fields.hasErrors('vaccinated')}? error"> </p>--> 
+                    
+                    <button type="submit" value="Save" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-primary">Cancel</button>
+                    
+                    
+                    
+                </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

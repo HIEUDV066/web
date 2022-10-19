@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <title>Add student</title>
+    </head>
+    <body>
+        
+        <div class="container" style="margin-top: 50px;">
+            <div class="row" style="border: 1px darkgrey solid; border-radius: 10px;width: 50%; margin: 0 auto; padding: 20px;" >
+                <div class="col-sm-12">
+                <h3>Add Student</h3>
+                <form th:action="@{/student/newstudent}" method="post" th:object="${student}">
+                    <div class="form-group">
+                        <label>Id:</label>
+                        <input type="text" class="form-control"  placeholder="id" th:field="*{id}">
+                    </div>
+                    <p style="color: red" th:if="${error}" th:text="${error}"></p>
+                	<p style="color: red" th:if="${#fields.hasErrors('*{id}')}" th:errors="*{id}"></p>
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <input type="text" class="form-control"  placeholder="name" th:field="*{name}">            
+                    </div> 
+                    <p style="color: red" th:if="${#fields.hasErrors('*{name}')}" th:errors="*{name}"></p>                 
+                  
+                    
+                    <div class="form-group">
+                        <label>Dob:</label>
+                        <input type="date" class="form-control"  placeholder="dob" autocomplete="on" th:field="*{dob}">                      
+                    </div>
+                    
+                    <p style="color: red" th:if="${#fields.hasErrors('*{dob}')}" th:errors="*{dob}"></p>
+                    
+                    <div class="form-group">
+                        <label>Major:</label>
+                        <input type="text" class="form-control"  placeholder="major" th:field="*{maijor}">                        
+                    </div>
+                    <p style="color: red" th:if="${#fields.hasErrors('*{maijor}')}" th:errors="*{maijor}"></p>
+     				<div class="form-group">
+                        <label>Vaccinated:</label><br/>
+                        <select th:field="*{vaccinated}">
+                        	<option th:value="1" th:text="YES"></option>
+                        	<option th:value="0" th:text="NO"></option>
+                        </select>                     
+                    </div>
+                    
+<!--                     <p th:if="${#fields.hasErrors('vaccinated')}" th:errors="*{vaccinated}" th:class="${#fields.hasErrors('vaccinated')}? error"> </p>--> 
+                    
+                    <button type="submit" value="Save" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-primary">Cancel</button>
+                    
+                    
+                    
+                </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
